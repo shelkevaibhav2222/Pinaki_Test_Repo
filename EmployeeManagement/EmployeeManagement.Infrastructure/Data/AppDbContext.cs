@@ -15,9 +15,34 @@ namespace EmployeeManagement.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Employee>(entity =>
+            {
+                entity.ToTable("Employee");
+
+                entity.Property(x => x.FirstName).HasMaxLength(100).HasColumnType("nvarchar(100)");
+                entity.Property(x => x.LastName).HasMaxLength(100).HasColumnType("nvarchar(100)");
+                entity.Property(x => x.City).HasMaxLength(100).HasColumnType("nvarchar(100)");
+                entity.Property(x => x.Zip).HasMaxLength(10).HasColumnType("nvarchar(10)");
+
+                entity
+                    .Property(x => x.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("GETDATE()");
+            });
+
             modelBuilder.Entity<EmployeeSalary>(entity =>
             {
+                entity.ToTable("EmployeeSalary");
+
                 entity.Property(x => x.Amount).HasPrecision(18, 2);
+
+                entity.Property(x => x.SalaryDate).HasColumnType("datetime");
+
+                entity
+                    .Property(x => x.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("GETDATE()");
+
                 entity
                     .HasOne(x => x.Employee)
                     .WithMany(x => x.Salaries)
