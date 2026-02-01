@@ -1,0 +1,57 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Add New Employee";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-user-plus"></i> Create New Employee</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><i class="fas fa-user"></i> First Name *</label>
+                                <input type="text" asp-for="EmployeeForm.FirstName" class="form-control" placeholder="Enter first name" required />
+                                <span asp-validation-for="EmployeeForm.FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><i class="fas fa-user"></i> Last Name *</label>
+                                <input type="text" asp-for="EmployeeForm.LastName" class="form-control" placeholder="Enter last name" required />
+                                <span asp-validation-for="EmployeeForm.LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><i class="fas fa-city"></i> City</label>
+                                <input type="text" asp-for="EmployeeForm.City" class="form-control" placeholder="Enter city" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><i class="fas fa-mailbox"></i> Zip Code</label>
+                                <input type="text" asp-for="EmployeeForm.Zip" class="form-control" placeholder="Enter zip code" />
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-save"></i> Save Employee
+                            </button>
+                            <a href="/Employees" class="btn btn-secondary btn-lg ms-2">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,53 @@
+@using EmployeeManagement.Application.DTOs
+@model EmployeeDto
+
+<form id="editForm" method="post" action="/Employees/Update">
+    <input type="hidden" asp-for="Id" />
+    
+    <div class="mb-3">
+        <label class="form-label"><i class="fas fa-user"></i> First Name</label>
+        <input type="text" asp-for="FirstName" class="form-control" required />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label"><i class="fas fa-user"></i> Last Name</label>
+        <input type="text" asp-for="LastName" class="form-control" required />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label"><i class="fas fa-city"></i> City</label>
+        <input type="text" asp-for="City" class="form-control" />
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label"><i class="fas fa-mailbox"></i> Zip</label>
+        <input type="text" asp-for="Zip" class="form-control" />
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+    </div>
+</form>
+
+<script>
+document.getElementById('editForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const response = await fetch(this.action, {
+        method: 'POST',
+        body: formData
+    });
+    
+    if (response.ok) {
+        alert('Employee updated successfully!');
+        bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+        location.reload();
+    } else {
+        alert('Error updating employee');
+    }
+});
+</script>

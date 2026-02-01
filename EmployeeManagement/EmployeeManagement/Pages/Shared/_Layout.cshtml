@@ -3,44 +3,67 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EmployeeManagement</title>
+    <title>@ViewData["Title"] - Employee Management</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/EmployeeManagement.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">EmployeeManagement</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="d-flex">
+        <!-- Sidebar Navigation -->
+        <nav class="bg-dark text-white p-3" style="width: 250px; min-height: 100vh;">
+            <h4 class="mb-4">
+                <i class="fas fa-building"></i> Employee Mgmt
+            </h4>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="/" title="Dashboard">
+                        <i class="fas fa-home"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="/Employees/Create" title="Add New Employee">
+                        <i class="fas fa-user-plus"></i> Add Employee
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="/Employees" title="View All Employees">
+                        <i class="fas fa-users"></i> All Employees
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="/Employees/AddSalary" title="Add Salary">
+                        <i class="fas fa-money-bill"></i> Add Salary
+                    </a>
+                </li>
+            </ul>
+            <hr class="bg-secondary" />
+           
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - EmployeeManagement - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        <!-- Main Content -->
+        <div style="flex: 1;">
+            <!-- Top Header -->
+            <header class="bg-light border-bottom p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>@ViewData["Title"]</h2>
+                    <div>
+                        <span class="me-3">Welcome, Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main role="main" class="p-4" style="background-color: #f8f9fa; min-height: 85vh;">
+                @RenderBody()
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-light text-center p-3 border-top">
+                <p>&copy; 2026 Employee Management System. All rights reserved.</p>
+            </footer>
         </div>
-    </footer>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

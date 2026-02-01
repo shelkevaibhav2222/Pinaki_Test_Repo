@@ -1,0 +1,54 @@
+@page
+@model AddSalaryModel
+@{
+    ViewData["Title"] = "Add Employee Salary";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-money-bill"></i> Add Monthly Salary</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fas fa-user"></i> Employee *</label>
+                            <select asp-for="SalaryForm.EmployeeId" asp-items="Model.Employees" class="form-select" required>
+                                <option value="">-- Select Employee --</option>
+                            </select>
+                            <span asp-validation-for="SalaryForm.EmployeeId" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><i class="fas fa-calendar"></i> Salary Date *</label>
+                                <input type="month" asp-for="SalaryForm.SalaryDate" class="form-control" required />
+                                <span asp-validation-for="SalaryForm.SalaryDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><i class="fas fa-dollar-sign"></i> Amount *</label>
+                                <input type="number" asp-for="SalaryForm.Amount" step="0.01" class="form-control" placeholder="0.00" required />
+                                <span asp-validation-for="SalaryForm.Amount" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-save"></i> Save Salary
+                            </button>
+                            <a href="/Employees" class="btn btn-secondary btn-lg ms-2">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Application.DTOs
 {
-    public class EmployeeDto
+    public class EmployeeSalaryDto
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string City { get; set; }
-        public string Zip { get; set; }
+        public int EmployeeId { get; set; }
+        public DateTime SalaryDate { get; set; }
+        public decimal Amount { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

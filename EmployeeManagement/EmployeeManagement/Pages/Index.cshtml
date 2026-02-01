@@ -5,6 +5,41 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Employee Management System</h1>
+    <p class="lead">Manage your employees and their salary records efficiently</p>
+    
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Manage Employees</h5>
+                    <p class="card-text">Add, edit, and manage employee information easily.</p>
+                    <a href="/Employees" class="btn btn-primary btn-sm">Go to Employees</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-money-bill fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Track Salaries</h5>
+                    <p class="card-text">View and manage monthly salary records for each employee.</p>
+                    <a href="/Employees/AddSalary" class="btn btn-success btn-sm">Add Salary</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-user-plus fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Quick Actions</h5>
+                    <p class="card-text">Quickly create new employee records with just a few clicks.</p>
+                    <a href="/Employees/Create" class="btn btn-info btn-sm">Add Employee</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
 </div>

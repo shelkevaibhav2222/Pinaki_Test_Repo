@@ -1,22 +1,28 @@
+using EmployeeManagement.Application.Mapping;
+using EmployeeManagement.Application.Services;
+using EmployeeManagement.Core.Interfaces;
+using EmployeeManagement.Infrastructure.Data;
+using EmployeeManagement.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("EmployeeDB")
-    ));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDB"))
+);
 
 // Dependency Injection
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeSalaryRepository, EmployeeSalaryRepository>();
 builder.Services.AddScoped<EmployeeService>();
+builder.Services.AddScoped<EmployeeSalaryService>();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-
 
 var app = builder.Build();
 
