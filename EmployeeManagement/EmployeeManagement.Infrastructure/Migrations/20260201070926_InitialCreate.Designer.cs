@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260201060338_InitialCreate")]
+    [Migration("20260201070926_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -83,12 +83,17 @@ namespace EmployeeManagement.Infrastructure.Migrations
             modelBuilder.Entity("EmployeeManagement.Core.Entities.EmployeeSalary", b =>
                 {
                     b.HasOne("EmployeeManagement.Core.Entities.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("Salaries")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("EmployeeManagement.Core.Entities.Employee", b =>
+                {
+                    b.Navigation("Salaries");
                 });
 #pragma warning restore 612, 618
         }

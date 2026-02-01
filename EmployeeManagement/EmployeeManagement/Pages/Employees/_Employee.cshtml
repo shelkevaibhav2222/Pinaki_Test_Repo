@@ -1,8 +1,13 @@
 @using EmployeeManagement.Application.DTOs
 @model EmployeeDto
+@{
+    Layout = null;
+}
 
 <form id="editForm" method="post" action="/Employees/Update">
+    @Html.AntiForgeryToken()
     <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CreatedDate" />
     
     <div class="mb-3">
         <label class="form-label"><i class="fas fa-user"></i> First Name</label>
@@ -31,23 +36,3 @@
         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
     </div>
 </form>
-
-<script>
-document.getElementById('editForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const response = await fetch(this.action, {
-        method: 'POST',
-        body: formData
-    });
-    
-    if (response.ok) {
-        alert('Employee updated successfully!');
-        bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
-        location.reload();
-    } else {
-        alert('Error updating employee');
-    }
-});
-</script>

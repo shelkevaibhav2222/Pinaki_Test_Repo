@@ -93,7 +93,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h5 class="modal-title"><i class="fas fa-money-bill"></i> Salary Records</h5>
+                <h5 class="modal-title"><i class="fas fa-money-bill"></i> Salary Records - @DateTime.Now.Year</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body" id="salaryContent">
@@ -109,16 +109,42 @@
             document.getElementById('editContent').innerHTML = '<div class="spinner-border"><span class="visually-hidden">Loading...</span></div>';
             fetch(`/Employees/GetEmployeePartial?id=${id}`)
                 .then(r => r.text())
-                .then(html => document.getElementById('editContent').innerHTML = html)
+                .then(html => {
+                    document.getElementById('editContent').innerHTML = html;
+                    bindEditForm();
+                })
                 .catch(e => document.getElementById('editContent').innerHTML = '<div class="alert alert-danger">Error loading data</div>');
         }
 
-        function loadSalaryRecords(id) {
+        function bindEditForm() {
+            const form = document.getElementById('editForm');
+            if (!form) return;
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+                    location.reload();
+                } else {
+                    const errorText = await response.text();
+                    alert(errorText || 'Error updating employee');
+                }
+            });
+        }
+
+        window.loadSalaryRecords = function (id, page = 1) {
             document.getElementById('salaryContent').innerHTML = '<div class="spinner-border"><span class="visually-hidden">Loading...</span></div>';
-            fetch(`/Employees/GetSalaryPartial?id=${id}`)
+            fetch(`/Employees/GetSalaryPartial?id=${id}&pageNumber=${page}`)
                 .then(r => r.text())
                 .then(html => document.getElementById('salaryContent').innerHTML = html)
                 .catch(e => document.getElementById('salaryContent').innerHTML = '<div class="alert alert-danger">Error loading salary data</div>');
-        }
+        };
     </script>
 }

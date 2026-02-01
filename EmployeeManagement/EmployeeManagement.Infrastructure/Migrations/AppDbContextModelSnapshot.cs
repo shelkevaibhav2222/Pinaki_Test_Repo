@@ -80,12 +80,17 @@ namespace EmployeeManagement.Infrastructure.Migrations
             modelBuilder.Entity("EmployeeManagement.Core.Entities.EmployeeSalary", b =>
                 {
                     b.HasOne("EmployeeManagement.Core.Entities.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("Salaries")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("EmployeeManagement.Core.Entities.Employee", b =>
+                {
+                    b.Navigation("Salaries");
                 });
 #pragma warning restore 612, 618
         }

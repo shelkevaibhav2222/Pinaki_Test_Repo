@@ -24,8 +24,12 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label"><i class="fas fa-calendar"></i> Salary Date *</label>
-                                <input type="month" asp-for="SalaryForm.SalaryDate" class="form-control" required />
-                                <span asp-validation-for="SalaryForm.SalaryDate" class="text-danger"></span>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                    <input type="text" asp-for="SalaryDateText" class="form-control rounded-pill" placeholder="dd/MM/yyyy" autocomplete="off" required />
+                                </div>
+                                <small class="text-muted">Format: dd/MM/yyyy (Indian format)</small>
+                                <span asp-validation-for="SalaryDateText" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label"><i class="fas fa-dollar-sign"></i> Amount *</label>
@@ -51,4 +55,17 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.flatpickr) {
+                flatpickr('#SalaryDateText', {
+                    dateFormat: 'd/m/Y',
+                    allowInput: true
+                });
+            }
+        });
+    </script>
 }

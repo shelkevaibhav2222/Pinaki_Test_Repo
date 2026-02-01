@@ -14,6 +14,6 @@ namespace EmployeeManagement.Core.Entities
         public decimal Amount { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
     }
 }
